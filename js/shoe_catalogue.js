@@ -1,4 +1,4 @@
-function shoe_catalogue(storedItems){
+function shoe_catalogue(storedItems) {
 
 
     let itemsData = [
@@ -8,4 +8,43 @@ function shoe_catalogue(storedItems){
         { color: 'Yellow', brand: 'Spaghetti', price: 220, size: 9, in_stock: 9, id: 4 },
         { color: 'Brown', brand: 'Chank', price: 150, size: 10, in_stock: 17, id: 5 }
     ];
+
+    function returnItemsData(){
+        return itemsData;
+    }
+
+    let shoes = [];
+
+    if (storedItems && storedItems.length > 0) {
+        let itemsData = [];
+
+        for (let i = 0; i < storedItems.length; i++) {
+            const shoes = storedItems[i];
+            itemsData.push(shoes)
+        }
+    }
+
+    function error() {
+        if (shoes.length === 0) {
+            return "Oops!, No Shoe Found"
+        }
+    }
+
+    function addShoe(Size, Color, Brand, In_Stock, Amount){
+        for (let i = 0; i < itemsData.length; i++) {
+            const result = itemsData[i];
+            if (Size === result.size && Color === result.color && Brand === result.brand) {
+                result.in_stock += In_Stock;
+                result.price += Amount;
+                return true;
+            }
+        }
+    }
+
+
+    return {
+        error,
+        returnItemsData,
+        addShoe
+    }
 }
